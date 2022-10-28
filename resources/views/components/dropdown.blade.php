@@ -22,19 +22,15 @@ switch ($width) {
     case '48':
         $width = 'w-48';
         break;
-
-    case '96':
-        $width = 'w-96';
-        break;
 }
 @endphp
 
-<div class="relative" x-data="{ open: true }" @click.away="open = false" @close.stop="open = false">
+<div class="relative" x-data="{ open: false }" @click.away="open = false" @close.stop="open = false">
     <div @click="open = ! open">
         {{ $trigger }}
     </div>
 
-    <div class="bg-gray-800" x-show="open"
+    <div x-show="open"
             x-transition:enter="transition ease-out duration-200"
             x-transition:enter-start="transform opacity-0 scale-95"
             x-transition:enter-end="transform opacity-100 scale-100"
@@ -42,7 +38,8 @@ switch ($width) {
             x-transition:leave-start="transform opacity-100 scale-100"
             x-transition:leave-end="transform opacity-0 scale-95"
             class="absolute z-50 mt-2 {{ $width }} rounded-md shadow-lg {{ $alignmentClasses }} {{ $dropdownClasses }}"
-            style="display: none;">
+            style="display: none;"
+            @click="open = false">
         <div class="rounded-md ring-1 ring-black ring-opacity-5 {{ $contentClasses }}">
             {{ $content }}
         </div>
