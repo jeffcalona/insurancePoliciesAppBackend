@@ -17,6 +17,12 @@ return new class extends Migration
             $table->id();
             $table->foreignId('user_id')->constrained()->cascadeOnDelete();
             $table->string('plan');
+            $table->unsignedBigInteger('cobertura_juridica_id')->nullable();
+            $table->foreign('cobertura_juridica_id')
+            ->references('id')
+                ->on('cobertura_juridicas')
+                ->onDelete('cascade')
+                ->onUpdate('set_null');
             $table->integer('price');
             $table->string('fullNameP');
             $table->integer('identificationP');

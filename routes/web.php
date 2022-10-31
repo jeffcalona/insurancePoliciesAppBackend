@@ -21,4 +21,4 @@ Route::get("/login", [AuthController::class, "index"]);
 Route::post("/login", [AuthController::class, "login"])->name("login");
 Route::post("/logout", [AuthController::class, "logout"])->name("logout");
 Route::resource("/user", AdminController::class)->middleware("auth")->only("index", "edit", "update");
-Route::resource("/cobertura", CoberturaController::class)->middleware("auth")->only("index", "edit", "update");
+Route::resource("/cobertura", CoberturaController::class)->middleware("auth")->only("index", "edit", "update", "create","store");

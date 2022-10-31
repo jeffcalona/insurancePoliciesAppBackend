@@ -13,6 +13,11 @@ class CoberturaJuridica extends Model
         return $this->belongsTo(User::class); //Esto significa, un post pertenece a un usuario
     }
 
+    public function doctor()
+    {
+        return $this->belongsTo(Doctor::class);
+    }
+
     protected $fillable = [
         'plan',
         'price',

@@ -112,7 +112,7 @@
                       </td>
                     
                     <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-                      <a href="#" class="text-indigo-600 dark:text-indigo-500 hover:text-indigo-900 dark:hover:text-indigo-700">Edit</a>
+                      <a href="{{route('cobertura.edit',$cobertura)}}" class="text-indigo-600 dark:text-indigo-500 hover:text-indigo-900 dark:hover:text-indigo-700">Edit</a>
                     </td>
                   </tr>
                   @endforeach
@@ -121,18 +121,10 @@
                 </tbody>
                 
               </table>
-            
+               
             </div>
-          </div>
         </div>
-      </div>
-   
-</div>
-   @if ($coberturas->hasPages())
-                
-                <div class="px-6 py-4">
-                    {{ $coberturas->links() }}hola
-                </div>
-                
-            @endif
+    </div>
+  </div>
+ 
 </div>
