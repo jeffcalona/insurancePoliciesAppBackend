@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\CoberturaJuridica;
+use App\Models\Doctor;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Barryvdh\DomPDF\Facade\Pdf;
 
 class CoberturaController extends Controller
 {
@@ -33,12 +35,13 @@ class CoberturaController extends Controller
         $cobertura->datePro = $request->datePro;
         $cobertura->timePro = $request->timePro;
         $cobertura->save();
-        return to_route('users.show', $cobertura);  
+        return to_route('users.index', $cobertura);  
     }
 
-    public function create (Request $request){
-       $user = User::find($request->user);
-        return view("cobertura/create", compact('user'));
+    public function create (){
+       $users = User::all();
+       $doctors = Doctor::all();
+        return view("cobertura/create", compact('users', 'doctors'));
     }
 
     public function store (Request $request)
@@ -58,5 +61,13 @@ class CoberturaController extends Controller
         ]);
        
         return redirect("cobertura/index");
+    }
+
+    public function pdf(CoberturaJuridica $cobertura){
+
+       
+        $pdf = Pdf::loadView('cobertura.pdf', ["cobertura" =>$cobertura]);
+        return $pdf->stream();
+        
     }
 }

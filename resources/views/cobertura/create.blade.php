@@ -146,16 +146,32 @@
                                 </div>
                                 </div>
 
-                                <div class="grid md:grid-cols-2 justify-center  md:gap-6">
-                                    
-
-                                <div>  @if ($user)
-                                    <label for="">{{$user->name}}</label>
-                                    <input type="text" name="user" value="{{$user->id}}"  class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder="" disabled required="">
-                                        @endif
-                                        @livewire('search-user')  
-                                </div>
-                                <div>    @livewire('search-doctor')</div>
+                                <div class="grid grid-cols-2 py-8">
+                                    <div class="container px-8 ">
+                                        <x-label class="text-white" value="Usuarios" />
+                                            <select class="w-full form-control" wire:model="user_id">
+                                                <option value="" selected disabled>Seleccione un usuario</option>
+                                
+                                                @foreach ($users as $user)
+                                                    <option  value="{{$user->id}}">{{$user->name}}</option>
+                                                @endforeach
+                                            </select>
+                                
+                                        <x-input-error for="region_id" />
+                                    </div>
+                                  
+                                  <div class="container px-8 ">
+                                    <x-label class="text-white" value="doctores" />
+                                        <select class="w-full form-control" wire:model="doctor_id">
+                                            <option value="" selected disabled>Seleccione un doctor</option>
+                                
+                                            @foreach ($doctors as $doctor)
+                                                <option  value="{{$doctor->id}}">{{$doctor->name}}</option>
+                                            @endforeach
+                                        </select>
+                                
+                                    <x-input-error for="city_id" />
+                                  </div>
                                 </div>
                     <button type="submit" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Enviar</font></font></button>
                 </form>
