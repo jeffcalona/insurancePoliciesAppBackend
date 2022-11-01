@@ -16,8 +16,17 @@ return new class extends Migration
     {
         Schema::create('cobertura_juridicas', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id')->constrained()->cascadeOnDelete();
+            $table->unsignedBigInteger('user_id')->nullable();
+            $table->foreign('user_id')
+            ->references('id')
+                ->on('users')
+                ->onDelete('cascade');
             $table->string('plan');
+            $table->unsignedBigInteger('doctor_id')->nullable();
+            $table->foreign('doctor_id')
+            ->references('id')
+                ->on('doctors')
+                ->onDelete('cascade');
             $table->integer('price');
             $table->string('fullNameP');
             $table->integer('identificationP');
