@@ -18,7 +18,11 @@ return new class extends Migration
             $table->foreignId('user_id')->constrained()->cascadeOnDelete();
             $table->string('nameU');
             $table->string('service');
-            $table->integer('clickOnService')->default(1);
+           
+            $table->string('logo');
+            $table->string('description');
+            $table->string('price');
+           
             $table->timestamps();
         });
     }

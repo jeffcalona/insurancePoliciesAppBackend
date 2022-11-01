@@ -21,8 +21,12 @@ class User extends Authenticatable
     public function coberturas() {
         return $this->hasMany(CoberturaJuridica::class); //Esto se lee -> un usuario puede tener muchas coberturas juridicas
     }
-    public function trackingServices() {
-        return $this->hasMany(TrackingService::class);
+   
+
+    public function trackingServices(){
+        return $this->belongsToMany(User::class ,'tracking_service_user')
+        ->withPivot('end', 'start', 'clickOnService','id')                
+        ->withTimestamps();
     }
 
     protected $fillable = [

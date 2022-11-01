@@ -13,6 +13,12 @@ class TrackingService extends Model
         return $this->belongsTo(User::class);
     }
 
+    public function users(){
+        return $this->belongsToMany(User::class ,'tracking_service_user')
+        ->withPivot('end', 'start', 'clickOnService','id')                
+        ->withTimestamps();
+    }
+
     protected $fillable = [
         'nameU',
         'service',
