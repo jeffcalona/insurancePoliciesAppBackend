@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\CoberturaJuridica;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class CoberturaController extends Controller
@@ -35,9 +36,9 @@ class CoberturaController extends Controller
         return to_route('users.show', $cobertura);  
     }
 
-    public function create (){
-       
-        return view("cobertura/create");
+    public function create (Request $request){
+       $user = User::find($request->user);
+        return view("cobertura/create", compact('user'));
     }
 
     public function store (Request $request)
