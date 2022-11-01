@@ -250,7 +250,7 @@
                 confirmButtonText: 'Yes, delete it!'
             }).then((result) => {
                 if (result.isConfirmed) {
-                    Livewire.emitTo('search', 'delete', coberturaId);
+                    Livewire.emitTo('cobertura.search', 'delete', coberturaId);
                     Swal.fire(
                         'Deleted!',
                         'Your file has been deleted.',
