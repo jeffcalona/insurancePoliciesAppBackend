@@ -15,8 +15,8 @@ return new class extends Migration
     {
         Schema::create('tracking_service_user', function (Blueprint $table) {
             $table->id();
-            $table->dateTime('start');
-            $table->dateTime('end');
+            $table->string('start');
+            $table->string('end');
             $table->integer('clickOnService')->default(1);
 
             $table->unsignedBigInteger('tracking_service_id')->nullable();

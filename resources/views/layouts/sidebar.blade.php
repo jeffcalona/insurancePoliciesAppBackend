@@ -31,6 +31,13 @@
                 <span class="px-2 py-1">Crear poliza</span>
             </x-item>
         </a> 
+
+        <a href="{{route('sure.index')}}">
+            <x-item type="mainItem">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="fill-current" width="24" height="24"><path class="heroicon-ui" d="M20 6a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V6c0-1.1.9-2 2-2h7.41l2 2H20zM4 6v12h16V8h-7.41l-2-2H4z"/></svg>
+                <span class="px-2 py-1">Otros seguros</span>
+            </x-item>
+        </a>
        
     </div>
 

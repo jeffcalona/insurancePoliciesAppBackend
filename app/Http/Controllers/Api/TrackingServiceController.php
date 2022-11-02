@@ -7,22 +7,26 @@ use Illuminate\Http\Request;
 use App\Models\TrackingService;
 use App\Models\TrackingServiceUser;
 use App\Models\User;
+use Illuminate\Support\Facades\DB;
+
+
 use Symfony\Component\HttpFoundation\Response;
 
 class TrackingServiceController extends Controller
 {
     public function updateTrackingServices(Request $request) {
-        $service = TrackingServiceUser::where('tracking_service_id', $request->tracking_service_id)
-                                        ->where('user_id', $request->user_id)->first();
-        if ($service) {
-            $request->validate([
-                'start' => 'required',
-                'end' => 'required'
+        
+        if (TrackingServiceUser::where('user_id', $request->user_id)->where('tracking_service_id', $request->tracking_service_id )->exists()) {
+           $service =TrackingServiceUser::where('user_id', $request->user_id)->where('tracking_service_id', $request->tracking_service_id )->first();
+           $request->validate([
+            'start' => 'required',
+            'end' => 'required'
             ]);
             $service->end = $request->end;
             $service->start = $request->start;
             $service->clickOnService = $service->clickOnService + 1;
             $service->save();
+           
         } else {
             $request->validate([
                 'start' => 'required',
@@ -35,6 +39,7 @@ class TrackingServiceController extends Controller
                     'start' => $request->start 
                 ]
                 ]);
+            $service =TrackingServiceUser::where('user_id', $request->user_id)->where('tracking_service_id', $request->tracking_service_id )->first();
         }
         
             
@@ -45,7 +50,7 @@ class TrackingServiceController extends Controller
     }
 
     public function trackingServices(Request $request, $user_id) {
-        $tracking = TrackingService::where('user_id', $user_id)->get();
+        $tracking = user::find($user_id)->trackingServices;
     
         return response()->json(['trackingServices' => $tracking]);
     }

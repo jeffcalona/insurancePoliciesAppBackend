@@ -3,7 +3,7 @@
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CoberturaController;
-
+use App\Http\Controllers\TrackingServiceController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -18,6 +18,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::view("/", "welcome");
+Route::resource('/sure', TrackingServiceController::class)->middleware("auth")->only('index', "edit", "update");
 Route::get("/login", [AuthController::class, "index"]);
 Route::post("/login", [AuthController::class, "login"])->name("login");
 Route::post("/logout", [AuthController::class, "logout"])->name("logout");

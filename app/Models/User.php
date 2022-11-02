@@ -24,8 +24,8 @@ class User extends Authenticatable
    
 
     public function trackingServices(){
-        return $this->belongsToMany(User::class ,'tracking_service_user')
-        ->withPivot('end', 'start', 'clickOnService','id')                
+        return $this->belongsToMany(TrackingService::class ,'tracking_service_user')
+        ->withPivot('end', 'start', 'clickOnService', 'tracking_service_id')                
         ->withTimestamps();
     }
 
