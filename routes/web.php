@@ -22,6 +22,6 @@ Route::resource('/sure', TrackingServiceController::class)->middleware("auth")->
 Route::get("/login", [AuthController::class, "index"]);
 Route::post("/login", [AuthController::class, "login"])->name("login");
 Route::post("/logout", [AuthController::class, "logout"])->name("logout");
-Route::resource("/user", AdminController::class)->middleware("auth")->only("index", "edit", "update");
+Route::resource("/user", AdminController::class)->middleware("auth")->only("index", "edit", "update", "show");
 Route::resource("/cobertura", CoberturaController::class)->middleware("auth")->only("index", "edit", "update", "create","store");
 Route::get('cobertura/pdf', [CoberturaController::class ,"pdf"])->name("cobertura.pdf");

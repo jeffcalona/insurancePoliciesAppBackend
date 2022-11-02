@@ -128,7 +128,10 @@
                               
   
                               <td class="px-6 py-4  ext-sm font-medium flex">
-  
+
+                                    <a href="{{route('user.show', $user->id)}}" class="btn " >
+                                        ver
+                                  </a>
                                   <a href="{{route('user.edit', $user->id)}}" class="btn bg-green-400" >
                                       <i class="fas fa-edit"></i>
                                   </a>
