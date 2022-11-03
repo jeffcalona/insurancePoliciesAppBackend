@@ -148,7 +148,11 @@
                                   </a>
                                   <a href="{{route('cobertura.pdf', $cobertura)}}" class="btn btn-red ml-2 cursor-pointer" >
                                     PDF</i>
-                                </a>
+                                  </a>
+                                
+                                  <a href="{{route('cobertura.email', $cobertura)}}" class="btn btn-red ml-2 cursor-pointer" >
+                                    Email</i>
+                                  </a>
   
                               </td>
                           </tr>

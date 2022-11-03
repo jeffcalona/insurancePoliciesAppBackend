@@ -70,4 +70,12 @@ class CoberturaController extends Controller
         return $pdf->stream();
         
     }
+
+    public function email(CoberturaJuridica $cobertura){
+
+       
+        
+        return view("cobertura/email", compact("cobertura"));
+        
+    }
 }

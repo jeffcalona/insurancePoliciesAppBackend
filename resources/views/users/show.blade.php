@@ -34,8 +34,31 @@
                    </div>
                   </div>
                  
-                  @livewire('user.cobertura', ['coberturas' => $user->coberturas])
-                  @livewire('user.tracking', ['sures' => $user->trackingServices])
+                  <div x-data="{open : true}">
+                    
+                  
+                   <a class="cursor-pointer hidden bg-blue-500 p-2 rounded"  x-on:click="open = true"
+                   :class="{'': !open, 'hidden':open}">
+                    Ver coberturas
+                  </a>
+                   
+                    <a class="cursor-pointer hidden bg-blue-500 p-2 rounded"  x-on:click="open = false"
+                    :class="{'': open, 'hidden':!open}">
+                    Ver polizas
+                    </a>
+                  
+                   
+                    <div class="p-5 hidden" 
+                    :class="{'block': open, 'hidden':!open}">
+                      Cobertura
+                      @livewire('user.cobertura', ['coberturas' => $user->coberturas])
+                    </div>
+                    <div class="p-5 hidden" 
+                    :class="{'block': !open, 'hidden':open}">
+                      Polizas
+                      @livewire('user.tracking', ['sures' => $user->trackingServices])
+                    </div>
+                  </div>
                 </div>
           </div>
         </div>
