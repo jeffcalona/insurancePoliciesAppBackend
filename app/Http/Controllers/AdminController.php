@@ -31,4 +31,12 @@ class AdminController extends Controller
         $user->save();
         return to_route('users.show', $user);  
     }
+
+    
+    public function show( User $user)
+    {
+       
+        
+        return view('users.show', compact("user"));  
+    }
 }

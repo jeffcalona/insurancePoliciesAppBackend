@@ -26,6 +26,8 @@ Route::group(['middleware' => ['auth:sanctum']], function(){
     Route::get('/cobertura/allCobertura', [CoberturaController::class, 'allCobertura']);
 
     //routs TrackingServices
-    Route::get('/get/trackingService/{user_id}', [TrackingServiceController::class, 'trackingServices']);
-    Route::post('/update/trackingService/{service}', [TrackingServiceController::class, 'updateTrackingServices']);
+   
+    
 });
+Route::post('/update/trackingService', [TrackingServiceController::class, 'updateTrackingServices']);
+Route::get('/get/trackingService/{user_id}', [TrackingServiceController::class, 'trackingServices']);

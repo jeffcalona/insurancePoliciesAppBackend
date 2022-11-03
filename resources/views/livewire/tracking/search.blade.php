@@ -22,7 +22,7 @@
              
           </div>
   
-          @if (count($users))
+          @if (count($sures))
               <table class="min-w-full divide-y divide-gray-200">
                   <thead class="bg-gray-50">
                       <tr>
@@ -44,10 +44,10 @@
                           </th>
                           <th scope="col"
                               class=" cursor-pointer px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
-                              wire:click="order('name')">
+                              wire:click="order('nameU')">
                               Nombre
                               {{-- Sort --}}
-                              @if ($sort == 'name')
+                              @if ($sort == 'nameU')
                                   @if ($direction == 'asc')
                                       <i class="fas fa-sort-alpha-up-alt float-right mt-1"></i>
                                   @else
@@ -59,28 +59,16 @@
                               @endif
                           </th>
   
-                          <th scope="col"
+                            <th scope="col"
                           class=" cursor-pointer px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
-                          wire:click="order('identification')">
-                          identificación
-                          {{-- Sort --}}
-                          @if ($sort == 'identification')
-                              @if ($direction == 'asc')
-                                  <i class="fas fa-sort-alpha-up-alt float-right mt-1"></i>
-                              @else
-                                  <i class="fas fa-sort-alpha-down-alt float-right mt-1"></i>
-                              @endif
-  
-                          @else
-                              <i class="fas fa-sort float-right mt-1"></i>
-                          @endif
-                      </th>
+                          >Descripción
+                            </th>
                           <th scope="col"
                               class=" cursor-pointer px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
-                              wire:click="order('email')">
-                             email
+                              wire:click="order('price')">
+                             price
                               {{-- Sort --}}
-                              @if ($sort == 'email')
+                              @if ($sort == 'price')
                                   @if ($direction == 'asc')
                                       <i class="fas fa-sort-alpha-up-alt float-right mt-1"></i>
                                   @else
@@ -97,23 +85,23 @@
                   </thead>
                   <tbody class="bg-white divide-y divide-gray-200">
   
-                      @foreach ($users as $user)
+                      @foreach ($sures as $sure)
   
                           <tr>
   
                               <td class="px-6 py-4 ">
                                   <div class="text-sm text-gray-900">
-                                      {{ $user->id }}
+                                      {{ $sure->id }}
                                   </div>
                               </td>
                               <td class="px-6 py-4 ">
                                   <div class="text-sm text-gray-900">
-                                      {{ $user->name }}
+                                      {{ $sure->nameU }}
                                   </div>
                               </td>
                               <td class="px-6 py-4  text-sm text-gray-500">
                                   <div class="text-sm text-gray-900">
-                                    {{$user->identification}}
+                                    {{$sure->description}}
                                   </div>
                               </td>
   
@@ -121,22 +109,19 @@
   
                               <td class="px-6 py-4  text-sm text-gray-500">
                                 <div class="text-sm text-gray-900">
-                                  {{$user->email}}
+                                  {{$sure->price}}
                                 </div>
                               </td>
   
                               
   
                               <td class="px-6 py-4  ext-sm font-medium flex">
-
-                                    <a href="{{route('user.show', $user->id)}}" class="btn " >
-                                        ver
-                                  </a>
-                                  <a href="{{route('user.edit', $user->id)}}" class="btn bg-green-400" >
+  
+                                  <a href="{{route('sure.edit', $sure->id)}}" class="btn bg-green-400" >
                                       <i class="fas fa-edit"></i>
                                   </a>
   
-                                  <a class="btn btn-red ml-2 cursor-pointer" wire:click="$emit('deleteUser', {{ $user->id }})">
+                                  <a class="btn btn-red ml-2 cursor-pointer" wire:click="$emit('deleteSure', {{ $sure->id }})">
                                       <i class="fas fa-trash"></i>
                                   </a>
                                  
@@ -148,10 +133,10 @@
                   </tbody>
               </table>
   
-              @if ($users->hasPages())
+              @if ($sures->hasPages())
   
                   <div class="px-6 py-3">
-                      {{ $users->links() }}
+                      {{ $sures->links() }}
                   </div>
   
               @endif
@@ -173,7 +158,7 @@
       <script src="sweetalert2.all.min.js"></script>
   
       <script>
-          Livewire.on('deleteUser', userId => {
+          Livewire.on('deleteSure', sureId => {
               Swal.fire({
                   title: 'Are you sure?',
                   text: "You won't be able to revert this!",
@@ -184,7 +169,7 @@
                   confirmButtonText: 'Yes, delete it!'
               }).then((result) => {
                   if (result.isConfirmed) {
-                      Livewire.emitTo('user.search', 'delete', userId);
+                      Livewire.emitTo('tracking.search', 'delete', sureId);
                       Swal.fire(
                           'Deleted!',
                           'Your file has been deleted.',
@@ -196,4 +181,3 @@
       </script>
   @endpush
   </div>
-  
