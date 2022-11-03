@@ -10,6 +10,10 @@ use Illuminate\Queue\SerializesModels;
 class PdfMailable extends Mailable
 {
     public $subject = "";
+    
+    public $content;
+    public $pdf;
+
     use Queueable, SerializesModels;
 
     /**
@@ -17,9 +21,11 @@ class PdfMailable extends Mailable
      *
      * @return void
      */
-    public function __construct()
+    public function __construct($asunto, $content, $pdf)
     {
-        //
+        $this->subject = $asunto;
+        $this->content = $content;
+        $this->pdf = $pdf;
     }
 
     /**
@@ -29,6 +35,7 @@ class PdfMailable extends Mailable
      */
     public function build()
     {
-        return $this->view('view.name');
+        return $this->view('email.pdf')
+                        ->attach($this->pdf->getRealPath(),["as"=> $this->pdf->getClientOriginalName()]);
     }
 }

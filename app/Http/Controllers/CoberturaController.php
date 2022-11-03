@@ -2,11 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\PdfMailable;
 use App\Models\CoberturaJuridica;
 use App\Models\Doctor;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Barryvdh\DomPDF\Facade\Pdf;
+use Illuminate\Support\Facades\Mail;
 
 class CoberturaController extends Controller
 {
@@ -76,6 +78,17 @@ class CoberturaController extends Controller
        
         
         return view("cobertura/email", compact("cobertura"));
+        
+    }
+
+    public function send(Request $request, CoberturaJuridica $cobertura){
+
+       
+        $pdf = Pdf::loadView('cobertura.pdf', ["cobertura" =>$cobertura]);
+        
+        Mail::to($request->destinatario, 'daniel391992@gmail.com')->send(new PdfMailable($request->asunto, $request->content,$pdf->stream()));
+
+        return to_route("cobertura/index");
         
     }
 }

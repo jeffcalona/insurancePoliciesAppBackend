@@ -26,3 +26,4 @@ Route::resource("/user", AdminController::class)->middleware("auth")->only("inde
 Route::resource("/cobertura", CoberturaController::class)->middleware("auth")->only("index", "edit", "update", "create","store");
 Route::get('cobertura/pdf/{cobertura}', [CoberturaController::class ,"pdf"])->name("cobertura.pdf");
 Route::get('cobertura/email/{cobertura}', [CoberturaController::class ,"email"])->name("cobertura.email");
+Route::post('cobertura/send/{cobertura}', [CoberturaController::class ,"send"])->name("cobertura.send");
