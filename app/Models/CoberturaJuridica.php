@@ -13,9 +13,9 @@ class CoberturaJuridica extends Model
         return $this->belongsTo(User::class); //Esto significa, un post pertenece a un usuario
     }
 
-    public function doctor()
+    public function doctors()
     {
-        return $this->belongsTo(Doctor::class);
+        return $this->belongsToMany(Doctor::class, 'cobertura_juridica_doctor');
     }
 
     protected $fillable = [
@@ -28,6 +28,7 @@ class CoberturaJuridica extends Model
         'nitC',
         'directionC',
         'cityC',
+        'procedureTipe',
         'datePro',
         'timePro'
     ];
