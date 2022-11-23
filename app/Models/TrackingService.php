@@ -9,13 +9,19 @@ class TrackingService extends Model
 {
     use HasFactory;
 
-    public function user() {
-        return $this->belongsTo(User::class);
+  
+
+    public function users(){
+        return $this->belongsToMany(User::class ,'tracking_service_user')
+        ->withPivot('end', 'start', 'clickOnService')                
+        ->withTimestamps();
     }
 
     protected $fillable = [
         'nameU',
-        'service',
-        'clickOnService'
+        'logo',
+        'description',
+        'price'
+        
     ];
 }

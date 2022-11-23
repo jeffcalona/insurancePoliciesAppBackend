@@ -34,4 +34,8 @@ Route::group(['middleware' => ['auth:sanctum']], function(){
     Route::get('/cobertura/doctors', [DoctorController::class, 'allDoctors']);
     Route::get('/get/cobertura/doctors/{identification}', [DoctorController::class, 'oneDoctor']);
     Route::post('/cobertura/doctors/addDoctor', [DoctorController::class, 'addDoctor']);
-});
+    
+    
+    //anterior main
+    //Route::post('/update/trackingService', [TrackingServiceController::class, 'updateTrackingServices']);
+    //Route::get('/get/trackingService/{user_id}', [TrackingServiceController::class, 'trackingServices']);

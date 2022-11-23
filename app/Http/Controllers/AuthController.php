@@ -17,7 +17,7 @@ class AuthController extends Controller
         if (Auth::attempt($request->only("email", "password"), $remember)) {
 
             $request->session()->regenerate();
-           return redirect("admin")->with("status", "you are logged in");
+           return redirect("user")->with("status", "you are logged in");
         }
         throw ValidationException::withMessages(["email"=> __("auth.failed")]);        
         
