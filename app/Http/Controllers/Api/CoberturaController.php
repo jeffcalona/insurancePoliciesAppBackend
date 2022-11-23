@@ -21,15 +21,21 @@ class CoberturaController extends Controller
             'nitC' => 'required',
             'directionC' => 'required',
             'cityC' => 'required',
+            'procedureTipe' => 'required',
             'datePro' => 'nullable',
             'timePro' => 'nullable'
         ]);
 
         //'alta de la cobertura' -- los datos que voy a cargar de la cobertura, paciente y clinica para realizar el registro pero únicamente en el usuario q hizo el login
-        $request->user()->coberturas()->create($validated);
+        $coberturas = $request->user()->coberturas()->create($validated);
+        
+        $cobertura = CoberturaJuridica::find($coberturas->id);
+
+        $cobertura->doctors()->attach([$request->doctor_id]);
+        
 
         //respuesta
-        return response($validated, Response::HTTP_CREATED);
+        return response($cobertura, Response::HTTP_CREATED);
 
     }
 
@@ -45,4 +51,5 @@ class CoberturaController extends Controller
         $coberturaJuridica = CoberturaJuridica::all();
         return response()->json(['coberturasJuridicas' => $coberturaJuridica]);
     }
+
 }

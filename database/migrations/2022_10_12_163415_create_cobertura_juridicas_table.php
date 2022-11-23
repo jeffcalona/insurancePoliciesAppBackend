@@ -22,11 +22,6 @@ return new class extends Migration
                 ->on('users')
                 ->onDelete('cascade');
             $table->string('plan');
-            $table->unsignedBigInteger('doctor_id')->nullable();
-            $table->foreign('doctor_id')
-            ->references('id')
-                ->on('doctors')
-                ->onDelete('cascade');
             $table->integer('price');
             $table->string('fullNameP');
             $table->integer('identificationP');
@@ -35,6 +30,7 @@ return new class extends Migration
             $table->integer('nitC');
             $table->string('directionC');
             $table->string('cityC');
+            $table->string('procedureTipe');
             $table->string('datePro')->nullable();
             $table->string('timePro')->nullable();
             $table->timestamps();

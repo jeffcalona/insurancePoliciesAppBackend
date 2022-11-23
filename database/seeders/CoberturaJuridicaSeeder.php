@@ -27,7 +27,7 @@ class CoberturaJuridicaSeeder extends Seeder
                 "nitC" => fake()->randomElement([10, 10]),
                 "directionC" => fake()->randomElement([7, 8]),
                 "cityC"=> fake()->randomElement(["Medellin", "cali", "Bogota", "Barranquilla"]),
-
+                "procedureTipe"=> fake()->randomElement(["Quirúrgico", "Estético"])
             ],
         
             [
@@ -40,6 +40,7 @@ class CoberturaJuridicaSeeder extends Seeder
                 "nitC" => fake()->randomElement([10,56,5434,345, 10]),
                 "directionC" => fake()->randomElement([7,54564,3434, 8]),
                 "cityC"=> fake()->randomElement(["Medellin", "cali", "Bogota", "Barranquilla"]),
+                "procedureTipe"=> fake()->randomElement(["Quirúrgico", "Estético"])
 
             ],
             [
@@ -52,7 +53,7 @@ class CoberturaJuridicaSeeder extends Seeder
                 "nitC" => fake()->randomElement([10, 10]),
                 "directionC" => fake()->randomElement([7, 8]),
                 "cityC"=> fake()->randomElement(["Medellin", "cali", "Bogota", "Barranquilla"]),
-
+                "procedureTipe"=> fake()->randomElement(["Quirúrgico", "Estético"])
             ]
             ];
        

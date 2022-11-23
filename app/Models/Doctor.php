@@ -9,8 +9,9 @@ class Doctor extends Model
 {
     use HasFactory;
     protected $guarded = ['id', 'created_at', 'updated_at'];
-    public function cobertura()
+
+    public function coberturas()
     {
-        return $this->hasOne(CoberturaJuridica::class);
+        return $this->belongsToMany(CoberturaJuridica::class, 'cobertura_juridica_doctor');
     }
 }

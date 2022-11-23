@@ -5,6 +5,7 @@ use App\Http\Controllers\Api\CoberturaController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\TrackingServiceController;
+use App\Http\Controllers\Api\DoctorController;
 
 Route::post('/register', [AuthController::class, 'register']);
 Route::post('/login', [AuthController::class, 'login']);
@@ -26,8 +27,15 @@ Route::group(['middleware' => ['auth:sanctum']], function(){
     Route::get('/cobertura/allCobertura', [CoberturaController::class, 'allCobertura']);
 
     //routs TrackingServices
-   
+    Route::get('/get/trackingService/{user_id}', [TrackingServiceController::class, 'trackingServices']);
+    Route::post('/update/trackingService/{service}', [TrackingServiceController::class, 'updateTrackingServices']);
+
+    //Doctors 
+    Route::get('/cobertura/doctors', [DoctorController::class, 'allDoctors']);
+    Route::get('/get/cobertura/doctors/{identification}', [DoctorController::class, 'oneDoctor']);
+    Route::post('/cobertura/doctors/addDoctor', [DoctorController::class, 'addDoctor']);
     
-});
-Route::post('/update/trackingService', [TrackingServiceController::class, 'updateTrackingServices']);
-Route::get('/get/trackingService/{user_id}', [TrackingServiceController::class, 'trackingServices']);
+    
+    //anterior main
+    //Route::post('/update/trackingService', [TrackingServiceController::class, 'updateTrackingServices']);
+    //Route::get('/get/trackingService/{user_id}', [TrackingServiceController::class, 'trackingServices']);
