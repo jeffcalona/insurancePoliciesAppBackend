@@ -31,7 +31,8 @@ class CoberturaController extends Controller
         
         $cobertura = CoberturaJuridica::find($coberturas->id);
 
-        $cobertura->doctors()->attach([$request->doctor_id]);
+        // $cobertura->doctors()->attach([$request->doctor_id]);
+        $cobertura->doctors()->sync([1, 2]);
         
 
         //respuesta

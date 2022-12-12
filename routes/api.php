@@ -39,3 +39,4 @@ Route::group(['middleware' => ['auth:sanctum']], function(){
     //anterior main
     //Route::post('/update/trackingService', [TrackingServiceController::class, 'updateTrackingServices']);
     //Route::get('/get/trackingService/{user_id}', [TrackingServiceController::class, 'trackingServices']);
+});
